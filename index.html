@@ -1,437 +1,836 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Manas IT Center Mavli | RS-CIT, RS-CFA, Tally Prime</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manas IT Center - Professional Computer Education</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-  <!-- Bootstrap & Icons -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+        :root {
+            --primary: #0066cc;
+            --primary-dark: #004499;
+            --accent: #ff6b35;
+            --text-dark: #1a1a1a;
+            --text-light: #666;
+            --bg-light: #f8f9fa;
+            --bg-white: #ffffff;
+            --shadow: 0 10px 30px rgba(0,0,0,0.1);
+            --shadow-lg: 0 20px 60px rgba(0,0,0,0.15);
+        }
 
-  <!-- AOS for scroll animations -->
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
+        html {
+            scroll-behavior: smooth;
+        }
 
-  <!-- GLightbox for image popup -->
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/glightbox/3.3.0/css/glightbox.min.css" rel="stylesheet">
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: var(--text-dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
 
-  <style>
-    :root {
-      --primary:#ff4b2b;
-      --secondary:#ff416c;
-      --dark:#0b1120;
-    }
-    body{
-      font-family:"Segoe UI",system-ui,-apple-system,sans-serif;
-      background:#050816;
-      color:#e5e7eb;
-    }
-    .navbar{
-      background:rgba(5,8,22,0.9);
-      backdrop-filter:blur(14px);
-    }
-    .navbar-brand span{
-      background:linear-gradient(135deg,var(--primary),var(--secondary));
-      -webkit-background-clip:text;
-      color:transparent;
-      font-weight:700;
-    }
-    .hero{
-      min-height:90vh;
-      display:flex;
-      align-items:center;
-      background:radial-gradient(circle at top,var(--secondary)10%,#050816 55%);
-      overflow:hidden;
-      position:relative;
-    }
-    .hero::after{
-      content:"";
-      position:absolute;
-      width:450px;
-      height:450px;
-      background:radial-gradient(circle,var(--primary),transparent 60%);
-      opacity:.18;
-      right:-120px;bottom:-120px;
-      filter:blur(4px);
-    }
-    .hero-title{
-      font-size:clamp(2.5rem,4vw,3.7rem);
-      font-weight:800;
-      line-height:1.1;
-    }
-    .pill{
-      display:inline-flex;
-      align-items:center;
-      gap:.5rem;
-      padding:.35rem .9rem;
-      border-radius:999px;
-      background:rgba(15,23,42,0.75);
-      border:1px solid rgba(148,163,184,.5);
-      font-size:.85rem;
-    }
-    .pill i{color:var(--secondary);}
-    .btn-glass{
-      border-radius:999px;
-      border:1px solid rgba(148,163,184,.4);
-      padding:.8rem 1.8rem;
-      color:#e5e7eb;
-      background:linear-gradient(135deg,rgba(15,23,42,.9),rgba(15,23,42,.7));
-      box-shadow:0 18px 45px rgba(15,23,42,.9);
-      position:relative;
-      overflow:hidden;
-    }
-    .btn-glass span{position:relative;z-index:2;}
-    .btn-glass::before{
-      content:"";
-      position:absolute;
-      inset:0;
-      background:linear-gradient(135deg,var(--primary),var(--secondary));
-      opacity:0;
-      transition:opacity .3s ease;
-    }
-    .btn-glass:hover::before{opacity:.25;}
-    .btn-outline{
-      border-radius:999px;
-      border:1px solid rgba(148,163,184,.7);
-      color:#e5e7eb;
-      padding:.8rem 1.8rem;
-      background:rgba(15,23,42,.7);
-    }
-    .section-title{
-      font-weight:700;
-      letter-spacing:.07em;
-      color:#9ca3af;
-      text-transform:uppercase;
-      font-size:.9rem;
-    }
-    .section-heading{
-      font-weight:800;
-      font-size:2rem;
-    }
-    .gradient-text{
-      background:linear-gradient(135deg,var(--primary),var(--secondary));
-      -webkit-background-clip:text;
-      color:transparent;
-    }
-    .blur-card{
-      border-radius:20px;
-      background:linear-gradient(145deg,rgba(15,23,42,.95),rgba(15,23,42,.9));
-      border:1px solid rgba(148,163,184,.18);
-      box-shadow:0 18px 45px rgba(15,23,42,.9);
-    }
-    .course-icon{
-      width:40px;height:40px;
-      border-radius:12px;
-      display:flex;align-items:center;justify-content:center;
-      background:linear-gradient(135deg,var(--primary),var(--secondary));
-      color:white;
-    }
-    .gallery-img{
-      border-radius:18px;
-      object-fit:cover;
-      transition:transform .45s ease,box-shadow .4s ease;
-      cursor:pointer;
-    }
-    .gallery-img:hover{
-      transform:translateY(-6px) scale(1.02);
-      box-shadow:0 25px 60px rgba(15,23,42,.9);
-    }
-    .tag{
-      font-size:.75rem;
-      padding:.2rem .7rem;
-      border-radius:999px;
-      border:1px solid rgba(148,163,184,.4);
-      background:rgba(15,23,42,.8);
-    }
-    footer{
-      border-top:1px solid rgba(148,163,184,.25);
-      background:#020617;
-    }
-    .ripple{
-      position:absolute;
-      border-radius:50%;
-      transform:scale(0);
-      animation:ripple .6s linear;
-      background:rgba(255,255,255,.45);
-      pointer-events:none;
-      z-index:1;
-    }
-    @keyframes ripple{
-      to{transform:scale(4);opacity:0;}
-    }
-  </style>
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes scaleIn {
+            from {
+                opacity: 0;
+                transform: scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+        }
+
+        header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: white;
+            padding: 1rem 2rem;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: var(--shadow);
+            animation: fadeInDown 0.8s ease;
+        }
+
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            letter-spacing: 1px;
+            animation: slideInRight 0.8s ease;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            position: relative;
+            font-weight: 500;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background: var(--accent);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .hero {
+            background: linear-gradient(135deg, var(--primary) 0%, #003366 100%);
+            color: white;
+            padding: 150px 2rem 100px;
+            text-align: center;
+            margin-top: 60px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            animation: pulse 4s infinite;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+            margin: 0 auto;
+            animation: fadeInUp 1s ease;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            font-weight: 800;
+            letter-spacing: 2px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            opacity: 0.95;
+        }
+
+        .cta-btn {
+            display: inline-block;
+            background: var(--accent);
+            color: white;
+            padding: 15px 40px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: none;
+            font-size: 1rem;
+            animation: scaleIn 1s ease;
+        }
+
+        .cta-btn:hover {
+            background: #ff5a2a;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(255, 107, 53, 0.4);
+        }
+
+        .info-section {
+            background: var(--bg-light);
+            padding: 80px 2rem;
+            margin-top: 50px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: var(--primary);
+            animation: fadeInUp 0.8s ease;
+        }
+
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .card {
+            background: var(--bg-white);
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+            transition: all 0.3s ease;
+            animation: fadeInUp 0.8s ease;
+            border-left: 5px solid var(--primary);
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .card-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .card h3 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .card p {
+            color: var(--text-light);
+            margin-bottom: 0.5rem;
+        }
+
+        .gallery-section {
+            padding: 80px 2rem;
+            background: var(--bg-white);
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+            cursor: pointer;
+            animation: fadeInUp 0.8s ease;
+            height: 250px;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .gallery-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 102, 204, 0.8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .gallery-item:hover .gallery-overlay {
+            opacity: 1;
+        }
+
+        .gallery-overlay p {
+            color: white;
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            animation: fadeInUp 0.3s ease;
+        }
+
+        .modal-content {
+            position: relative;
+            margin: auto;
+            display: block;
+            width: 80%;
+            max-width: 800px;
+            top: 50%;
+            transform: translateY(-50%);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .modal-content img {
+            width: 100%;
+            height: auto;
+        }
+
+        .close {
+            position: absolute;
+            top: 20px;
+            right: 35px;
+            color: white;
+            font-size: 40px;
+            font-weight: bold;
+            cursor: pointer;
+            z-index: 2001;
+            transition: all 0.3s ease;
+        }
+
+        .close:hover {
+            transform: scale(1.2);
+            color: var(--accent);
+        }
+
+        .courses-section {
+            padding: 80px 2rem;
+            background: linear-gradient(135deg, var(--bg-light) 0%, var(--bg-white) 100%);
+        }
+
+        .course-card {
+            background: var(--bg-white);
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+            margin-bottom: 2rem;
+            transition: all 0.3s ease;
+            animation: fadeInUp 0.8s ease;
+            border-top: 4px solid var(--accent);
+        }
+
+        .course-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .course-card h4 {
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+            font-size: 1.3rem;
+        }
+
+        .course-badge {
+            display: inline-block;
+            background: var(--accent);
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            margin-right: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .enrollment-section {
+            padding: 80px 2rem;
+            background: var(--primary);
+            color: white;
+        }
+
+        .form-container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: rgba(255,255,255,0.1);
+            padding: 2rem;
+            border-radius: 10px;
+            backdrop-filter: blur(10px);
+            animation: scaleIn 0.8s ease;
+        }
+
+        .form-container h2 {
+            text-align: center;
+            margin-bottom: 2rem;
+            font-size: 2rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid rgba(255,255,255,0.3);
+            border-radius: 5px;
+            font-size: 1rem;
+            background: rgba(255,255,255,0.9);
+            color: var(--text-dark);
+            transition: all 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 10px rgba(255, 107, 53, 0.5);
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 12px;
+            background: var(--accent);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-weight: bold;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 1rem;
+        }
+
+        .submit-btn:hover {
+            background: #ff5a2a;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(255, 107, 53, 0.3);
+        }
+
+        .success-message {
+            display: none;
+            background: #4caf50;
+            color: white;
+            padding: 1rem;
+            border-radius: 5px;
+            margin-bottom: 1rem;
+            text-align: center;
+            animation: fadeInUp 0.5s ease;
+        }
+
+        footer {
+            background: var(--text-dark);
+            color: white;
+            padding: 3rem 2rem;
+            text-align: center;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+            text-align: left;
+        }
+
+        .footer-info h4 {
+            color: var(--accent);
+            margin-bottom: 1rem;
+        }
+
+        .footer-info p {
+            color: #ccc;
+            margin-bottom: 0.5rem;
+        }
+
+        .divider {
+            height: 1px;
+            background: #444;
+            margin: 2rem 0;
+        }
+
+        .footer-bottom {
+            color: #999;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .nav-links {
+                gap: 1rem;
+                font-size: 0.9rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .hero {
+                padding: 100px 1rem 80px;
+            }
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
 </head>
 <body>
+    <header>
+        <nav>
+            <div class="logo">🎓 Manas IT Center</div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#gallery">Gallery</a></li>
+                <li><a href="#courses">Courses</a></li>
+                <li><a href="#enroll">Enroll</a></li>
+            </ul>
+        </nav>
+    </header>
 
-<!-- Navbar -->
-<nav class="navbar navbar-expand-lg navbar-dark fixed-top">
-  <div class="container">
-    <a class="navbar-brand d-flex align-items-center" href="#">
-      <i class="fa-solid fa-laptop-code me-2 text-warning fs-4"></i>
-      <span>Manas IT Center</span>
-    </a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#nav">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="nav">
-      <ul class="navbar-nav ms-auto align-items-lg-center">
-        <li class="nav-item"><a class="nav-link" href="#home">Home</a></li>
-        <li class="nav-item"><a class="nav-link" href="#courses">Courses</a></li>
-        <li class="nav-item"><a class="nav-link" href="#gallery">Campus</a></li>
-        <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
-        <li class="nav-item ms-lg-3 mt-2 mt-lg-0">
-          <a href="tel:9929499188" class="btn btn-sm btn-gradient text-white">
-            <i class="fa-solid fa-phone me-1"></i> 9929499188
-          </a>
-        </li>
-      </ul>
-    </div>
-  </div>
-</nav>
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1>Welcome to Manas IT Center</h1>
+            <p>Professional Computer Education at Your Pace</p>
+            <button class="cta-btn" onclick="document.getElementById('enroll').scrollIntoView();">Start Learning Now</button>
+        </div>
+    </section>
 
-<!-- Hero -->
-<section id="home" class="hero pt-5">
-  <div class="container position-relative">
-    <div class="row align-items-center g-5">
-      <div class="col-lg-6" data-aos="fade-right">
-        <div class="pill mb-3">
-          <i class="fa-solid fa-circle-check"></i>
-          <span>Govt. approved RS-CIT center in Mavli</span>
-        </div>
-        <h1 class="hero-title mb-3">
-          Build your <span class="gradient-text">IT Career</span><br/>from Mavli.
-        </h1>
-        <p class="text-secondary mb-4">
-          Learn RS‑CIT, RS‑CFA, Tally Prime and more with a modern computer lab, projector classroom and real‑world practice on every system.
-        </p>
-        <div class="d-flex flex-wrap gap-3">
-          <button class="btn btn-glass click-animate">
-            <span><i class="fa-solid fa-bolt me-2"></i>Book Free Counselling</span>
-          </button>
-          <button class="btn btn-outline click-animate" onclick="document.getElementById('courses').scrollIntoView({behavior:'smooth'})">
-            <i class="fa-solid fa-graduation-cap me-2"></i>View Courses
-          </button>
-        </div>
-        <div class="d-flex gap-4 mt-4 text-secondary small">
-          <div><i class="fa-solid fa-users text-warning me-1"></i> 1000+ Students Trained</div>
-          <div><i class="fa-solid fa-location-dot text-warning me-1"></i> Mavli near Tehsil Road</div>
-        </div>
-      </div>
-
-      <div class="col-lg-6" data-aos="fade-left">
-        <div class="position-relative">
-          <div class="blur-card p-2">
-            <!-- outside front photo -->
-            <img src="3630.jpg" class="img-fluid rounded-4" alt="Manas IT Center Front">
-          </div>
-          <div class="position-absolute bottom-0 start-0 translate-middle-y ms-3 p-3 rounded-4"
-               style="background:rgba(15,23,42,.9); border:1px solid rgba(148,163,184,.4);">
-            <div class="small text-secondary">Smart Lab • Projector Classroom • AC Campus</div>
-            <div class="fw-semibold text-white mt-1"><i class="fa-solid fa-clock me-1"></i>Flexible Morning & Evening Batches</div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- Courses -->
-<section id="courses" class="py-5">
-  <div class="container">
-    <div class="text-center mb-5" data-aos="zoom-in">
-      <div class="section-title">Courses</div>
-      <h2 class="section-heading gradient-text mb-2">Job‑Focused Programs</h2>
-      <p class="text-secondary">Learn step‑by‑step from basics to advanced using real lab practice on every topic.</p>
-    </div>
-    <div class="row g-4">
-      <div class="col-lg-4" data-aos="fade-up">
-        <div class="blur-card p-4 h-100">
-          <div class="d-flex align-items-center mb-3">
-            <div class="course-icon me-3"><i class="fa-solid fa-desktop"></i></div>
-            <div>
-              <h5 class="mb-0 text-white">RS‑CIT</h5>
-              <div class="text-secondary small">3 Months · Govt. Certificate</div>
+    <section id="about" class="info-section">
+        <div class="container">
+            <h2 class="section-title">About Our Institute</h2>
+            <div class="cards-grid">
+                <div class="card">
+                    <div class="card-icon">👨‍🏫</div>
+                    <h3>Expert Teachers</h3>
+                    <p><strong>2 Experienced Instructors</strong></p>
+                    <p>Certified professionals with 10+ years of industry experience dedicated to your success.</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon">⏰</div>
+                    <h3>Flexible Timings</h3>
+                    <p><strong>5 Batch Slots Daily</strong></p>
+                    <p>8-10 AM | 10-12 PM | 12-2 PM | 2-4 PM | 4-6 PM - Choose what fits you!</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon">📍</div>
+                    <h3>Location</h3>
+                    <p><strong>Mavli, Haryana</strong></p>
+                    <p>Conveniently located with modern facilities and comfortable learning environment.</p>
+                </div>
             </div>
-          </div>
-          <p class="text-secondary small mb-3">
-            Rajasthan State Certificate in Information Technology with hands‑on practice in Windows, Internet, Email and MS‑Office.
-          </p>
-          <div class="d-flex flex-wrap gap-2 mb-3">
-            <span class="tag">Basic Computer</span>
-            <span class="tag">MS Office</span>
-            <span class="tag">Digital Rajasthan</span>
-          </div>
-          <button class="btn btn-sm btn-glass w-100 click-animate">
-            <span>Enroll for RS‑CIT</span>
-          </button>
         </div>
-      </div>
+    </section>
 
-      <div class="col-lg-4" data-aos="fade-up" data-aos-delay="100">
-        <div class="blur-card p-4 h-100">
-          <div class="d-flex align-items-center mb-3">
-            <div class="course-icon me-3"><i class="fa-solid fa-calculator"></i></div>
-            <div>
-              <h5 class="mb-0 text-white">RS‑CFA</h5>
-              <div class="text-secondary small">Tally · GST · Accounting</div>
+    <section id="gallery" class="gallery-section">
+        <div class="container">
+            <h2 class="section-title">Institute Gallery</h2>
+            <div class="gallery-grid" id="gallery-grid">
             </div>
-          </div>
-          <p class="text-secondary small mb-3">
-            Learn professional accounting with Tally Prime, GST, inventory, payroll and reporting for industry‑ready jobs.
-          </p>
-          <div class="d-flex flex-wrap gap-2 mb-3">
-            <span class="tag">Accounting</span>
-            <span class="tag">GST</span>
-            <span class="tag">Tally Prime</span>
-          </div>
-          <button class="btn btn-sm btn-glass w-100 click-animate">
-            <span>Join RS‑CFA Batch</span>
-          </button>
         </div>
-      </div>
+    </section>
 
-      <div class="col-lg-4" data-aos="fade-up" data-aos-delay="200">
-        <div class="blur-card p-4 h-100">
-          <div class="d-flex align-items-center mb-3">
-            <div class="course-icon me-3"><i class="fa-solid fa-file-invoice-dollar"></i></div>
-            <div>
-              <h5 class="mb-0 text-white">Tally Prime</h5>
-              <div class="text-secondary small">Fast‑Track Program</div>
-            </div>
-          </div>
-          <p class="text-secondary small mb-3">
-            Short‑term course focused only on Tally Prime for business owners and working professionals.
-          </p>
-          <div class="d-flex flex-wrap gap-2 mb-3">
-            <span class="tag">Business</span>
-            <span class="tag">Reports</span>
-            <span class="tag">Practical</span>
-          </div>
-          <button class="btn btn-sm btn-glass w-100 click-animate">
-            <span>Start Tally Course</span>
-          </button>
+    <div id="imageModal" class="modal">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <div class="modal-content">
+            <img id="modalImage" src="" alt="">
         </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- Gallery with YOUR file names -->
-<section id="gallery" class="py-5">
-  <div class="container">
-    <div class="text-center mb-5" data-aos="zoom-in">
-      <div class="section-title">Campus Tour</div>
-      <h2 class="section-heading gradient-text mb-2">Inside Manas IT Center</h2>
-      <p class="text-secondary">Original photos from your computer labs, classrooms and reception.</p>
     </div>
 
-    <<div class="row g-4">
-  <div class="col-md-6 col-lg-4" data-aos="zoom-in">
-    <a href="3630.jpg" class="glightbox" data-gallery="campus">
-      <img src="3630.jpg" class="img-fluid gallery-img" alt="Front view">
-    </a>
-  </div>
-  <div class="col-md-6 col-lg-4" data-aos="zoom-in" data-aos-delay="50">
-    <a href="3618.jpg" class="glightbox" data-gallery="campus">
-      <img src="3618.jpg" class="img-fluid gallery-img" alt="Lab view 1">
-    </a>
-  </div>
-  <div class="col-md-6 col-lg-4" data-aos="zoom-in" data-aos-delay="100">
-    <a href="3616.jpg" class="glightbox" data-gallery="campus">
-      <img src="3616.jpg" class="img-fluid gallery-img" alt="Lab view 2">
-    </a>
-  </div>
-  <div class="col-md-6 col-lg-4" data-aos="zoom-in" data-aos-delay="150">
-    <a href="3626.jpg" class="glightbox" data-gallery="campus">
-      <img src="3626.jpg" class="img-fluid gallery-img" alt="Lab view 3">
-    </a>
-  </div>
-  <div class="col-md-6 col-lg-4" data-aos="zoom-in" data-aos-delay="200">
-    <a href="3631.jpg" class="glightbox" data-gallery="campus">
-      <img src="3631.jpg" class="img-fluid gallery-img" alt="Classroom / projector">
-    </a>
-  </div>
-  <div class="col-md-6 col-lg-4" data-aos="zoom-in" data-aos-delay="250">
-    <a href="3629.jpg" class="glightbox" data-gallery="campus">
-      <img src="3629.jpg" class="img-fluid gallery-img" alt="Reception desk">
-    </a>
-  </div>
-</div>
-  </div>
-</section>
-
-<!-- Contact -->
-<section id="contact" class="py-5">
-  <div class="container">
-    <div class="row g-4 align-items-center">
-      <div class="col-lg-5" data-aos="fade-right">
-        <div class="section-title">Contact</div>
-        <h2 class="section-heading gradient-text mb-3">Visit or Call</h2>
-        <p class="text-secondary">
-          Manas IT Center, Mavli near Tehsil Road, Madhuban Colony. Walk‑in for demo class or call for batch information.
-        </p>
-        <ul class="list-unstyled text-secondary small mb-3">
-          <li class="mb-2"><i class="fa-solid fa-phone text-warning me-2"></i> 9929499188</li>
-        </ul>
-      </div>
-      <div class="col-lg-7" data-aos="fade-left">
-        <div class="blur-card p-4">
-          <h5 class="text-white mb-3"><i class="fa-regular fa-envelope me-2"></i>Quick Enquiry</h5>
-          <form onsubmit="alert('Thank you! This demo form does not send anywhere in GitHub Pages.'); return false;">
-            <div class="row g-3">
-              <div class="col-md-6">
-                <input type="text" class="form-control bg-dark text-white border-secondary" placeholder="Your Name" required>
-              </div>
-              <div class="col-md-6">
-                <input type="tel" class="form-control bg-dark text-white border-secondary" placeholder="Mobile Number" required>
-              </div>
-              <div class="col-12">
-                <select class="form-select bg-dark text-white border-secondary">
-                  <option selected>Interested Course</option>
-                  <option>RS‑CIT</option>
-                  <option>RS‑CFA</option>
-                  <option>Tally Prime</option>
-                </select>
-              </div>
-              <div class="col-12">
-                <textarea rows="3" class="form-control bg-dark text-white border-secondary" placeholder="Message"></textarea>
-              </div>
-              <div class="col-12 text-end">
-                <button class="btn btn-glass click-animate"><span>Submit Enquiry</span></button>
-              </div>
+    <section id="courses" class="courses-section">
+        <div class="container">
+            <h2 class="section-title">Our Courses</h2>
+            <div class="cards-grid">
+                <div class="course-card">
+                    <h4>RS-CIT</h4>
+                    <span class="course-badge">Basic</span>
+                    <span class="course-badge">3 Months</span>
+                    <p>Rajasthan State Certificate in Information Technology - Foundation course covering operating systems, office applications, and basic internet skills.</p>
+                </div>
+                <div class="course-card">
+                    <h4>RS-CFA</h4>
+                    <span class="course-badge">Advanced</span>
+                    <span class="course-badge">4 Months</span>
+                    <p>Advanced financial accounting and computer applications. Perfect for accounting professionals and business enthusiasts.</p>
+                </div>
+                <div class="course-card">
+                    <h4>Tally Prime</h4>
+                    <span class="course-badge">Professional</span>
+                    <span class="course-badge">2 Months</span>
+                    <p>Master modern accounting software. Tally Prime is essential for accountants, GST consultants, and finance professionals.</p>
+                </div>
             </div>
-          </form>
-          <div class="text-secondary small mt-2">Note: Static demo form for GitHub Pages.</div>
         </div>
-      </div>
-    </div>
-  </div>
-</section>
+    </section>
 
-<footer class="py-3 text-center text-secondary small">
-  © 2025 Manas IT Center Mavli. All Rights Reserved.
-</footer>
+    <section id="enroll" class="enrollment-section">
+        <div class="container">
+            <div class="form-container">
+                <h2>Enrollment Form</h2>
+                <div class="success-message" id="successMessage">
+                    ✓ Enrollment successful! Check your data below.
+                </div>
+                <form id="enrollmentForm">
+                    <div class="form-group">
+                        <label for="name">Full Name *</label>
+                        <input type="text" id="name" name="name" required placeholder="Enter your full name">
+                    </div>
 
-<!-- Scripts -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/glightbox/3.3.0/js/glightbox.min.js"></script>
-<script>
-  AOS.init({duration:800, once:true});
-  const lightbox = GLightbox({selector:'.glightbox'});
-  document.querySelectorAll('.click-animate').forEach(btn=>{
-    btn.addEventListener('click', e=>{
-      const ripple=document.createElement('span');
-      const rect=btn.getBoundingClientRect();
-      const size=Math.max(rect.width,rect.height);
-      ripple.style.width=ripple.style.height=size+'px';
-      ripple.style.left=e.clientX-rect.left-size/2+'px';
-      ripple.style.top=e.clientY-rect.top-size/2+'px';
-      ripple.className='ripple';
-      btn.appendChild(ripple);
-      setTimeout(()=>ripple.remove(),600);
-    });
-  });
-</script>
+                    <div class="form-group">
+                        <label for="email">Email Address *</label>
+                        <input type="email" id="email" name="email" required placeholder="Enter your email">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="phone">Phone Number *</label>
+                        <input type="tel" id="phone" name="phone" required placeholder="Enter your phone number">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="course">Select Course *</label>
+                        <select id="course" name="course" required>
+                            <option value="">-- Choose a Course --</option>
+                            <option value="RS-CIT">RS-CIT (Basic Computer Skills)</option>
+                            <option value="RS-CFA">RS-CFA (Advanced Accounting)</option>
+                            <option value="Tally Prime">Tally Prime (Accounting Software)</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="batch">Select Batch Time *</label>
+                        <select id="batch" name="batch" required>
+                            <option value="">-- Choose a Batch --</option>
+                            <option value="8-10 AM">8-10 AM</option>
+                            <option value="10-12 PM">10-12 PM</option>
+                            <option value="12-2 PM">12-2 PM</option>
+                            <option value="2-4 PM">2-4 PM</option>
+                            <option value="4-6 PM">4-6 PM</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="message">Additional Message</label>
+                        <input type="text" id="message" name="message" placeholder="Any special requirements?">
+                    </div>
+
+                    <button type="submit" class="submit-btn">✓ Submit Enrollment</button>
+                </form>
+
+                <div id="enrollmentData" style="margin-top: 2rem; padding: 1.5rem; background: rgba(255,255,255,0.1); border-radius: 5px; display: none;">
+                    <h3 style="margin-bottom: 1rem;">📋 Submitted Enrollments:</h3>
+                    <div id="dataList" style="max-height: 300px; overflow-y: auto;"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-info">
+                <div>
+                    <h4>🎓 Manas IT Center</h4>
+                    <p>Professional Computer Education</p>
+                </div>
+                <div>
+                    <h4>📞 Contact</h4>
+                    <p>Phone: +91 99294 99188</p>
+                    <p>Location: Mavli, Haryana</p>
+                </div>
+                <div>
+                    <h4>🕐 Working Hours</h4>
+                    <p>Monday - Saturday: 8 AM - 6 PM</p>
+                    <p>Sunday: Closed</p>
+                </div>
+            </div>
+            <div class="divider"></div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Manas IT Center. All rights reserved. | Empowering Through Education</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const galleryImages = [
+            'https://raw.githubusercontent.com/divyarajsingh2021-pixel/manas-it-center/main/IMG-20251229-WA0007.jpg',
+            'https://raw.githubusercontent.com/divyarajsingh2021-pixel/manas-it-center/main/IMG-20251229-WA0009.jpg',
+            'https://raw.githubusercontent.com/divyarajsingh2021-pixel/manas-it-center/main/IMG-20251229-WA0011.jpg',
+            'https://raw.githubusercontent.com/divyarajsingh2021-pixel/manas-it-center/main/IMG-20251229-WA0012.jpg',
+            'https://raw.githubusercontent.com/divyarajsingh2021-pixel/manas-it-center/main/IMG-20251229-WA0013.jpg',
+            'https://raw.githubusercontent.com/divyarajsingh2021-pixel/manas-it-center/main/IMG-20251229-WA0014.jpg',
+            'https://raw.githubusercontent.com/divyarajsingh2021-pixel/manas-it-center/main/IMG-20251229-WA0016.jpg',
+            'https://raw.githubusercontent.com/divyarajsingh2021-pixel/manas-it-center/main/IMG-20251229-WA0017.jpg',
+            'https://raw.githubusercontent.com/divyarajsingh2021-pixel/manas-it-center/main/IMG-20251229-WA0018.jpg'
+        ];
+
+        function loadGallery() {
+            const galleryGrid = document.getElementById('gallery-grid');
+            galleryImages.forEach((imgUrl, index) => {
+                const item = document.createElement('div');
+                item.className = 'gallery-item';
+                item.innerHTML = `
+                    <img src="${imgUrl}" alt="Institute Photo ${index + 1}" onclick="openModal('${imgUrl}')">
+                    <div class="gallery-overlay">
+                        <p>Click to View</p>
+                    </div>
+                `;
+                galleryGrid.appendChild(item);
+            });
+        }
+
+        function openModal(imgSrc) {
+            const modal = document.getElementById('imageModal');
+            const modalImg = document.getElementById('modalImage');
+            modal.style.display = 'block';
+            modalImg.src = imgSrc;
+        }
+
+        function closeModal() {
+            document.getElementById('imageModal').style.display = 'none';
+        }
+
+        window.onclick = function(event) {
+            const modal = document.getElementById('imageModal');
+            if (event.target === modal) {
+                modal.style.display = 'none';
+            }
+        }
+
+        const enrollmentForm = document.getElementById('enrollmentForm');
+        let enrollments = JSON.parse(localStorage.getItem('manas_enrollments')) || [];
+
+        enrollmentForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const formData = {
+                timestamp: new Date().toLocaleString(),
+                name: document.getElementById('name').value,
+                email: document.getElementById('email').value,
+                phone: document.getElementById('phone').value,
+                course: document.getElementById('course').value,
+                batch: document.getElementById('batch').value,
+                message: document.getElementById('message').value
+            };
+
+            enrollments.push(formData);
+            localStorage.setItem('manas_enrollments', JSON.stringify(enrollments));
+
+            document.getElementById('successMessage').style.display = 'block';
+            setTimeout(() => {
+                document.getElementById('successMessage').style.display = 'none';
+            }, 3000);
+
+            enrollmentForm.reset();
+            updateEnrollmentData();
+        });
+
+        function updateEnrollmentData() {
+            const dataList = document.getElementById('dataList');
+            const enrollmentData = document.getElementById('enrollmentData');
+
+            if (enrollments.length === 0) {
+                enrollmentData.style.display = 'none';
+                return;
+            }
+
+            enrollmentData.style.display = 'block';
+            dataList.innerHTML = '';
+
+            enrollments.forEach((enrollment, index) => {
+                const entry = document.createElement('div');
+                entry.style.cssText = 'padding: 1rem; background: rgba(255,255,255,0.05); margin-bottom: 0.8rem; border-radius: 5px; border-left: 3px solid #ff6b35;';
+                entry.innerHTML = `
+                    <strong>#${index + 1} - ${enrollment.name}</strong><br>
+                    📧 ${enrollment.email}<br>
+                    📞 ${enrollment.phone}<br>
+                    📚 Course: ${enrollment.course}<br>
+                    🕐 Batch: ${enrollment.batch}<br>
+                    <small style="opacity: 0.7;">📅 ${enrollment.timestamp}</small>
+                `;
+                dataList.appendChild(entry);
+            });
+        }
+
+        window.addEventListener('load', function() {
+            loadGallery();
+            updateEnrollmentData();
+        });
+    </script>
 </body>
 </html>
